@@ -107,10 +107,10 @@ class Response
                     $message = sprintf('%s (%s)', $this->root_error['message'], implode(', ', $this->element_errors));
                     $message .= $this->parseBadRequest();
 
-                    throw new BadRequestException($message, $this->root_error['code']);
+                    throw (new BadRequestException($message, $this->root_error['code']))->setResponse($this);
                 }
 
-                throw new BadRequestException();
+                throw (new BadRequestException())->setResponse($this);
 
 
             /** @noinspection PhpMissingBreakStatementInspection */
@@ -132,7 +132,7 @@ class Response
                 throw new ForbiddenException();
 
             case self::STATUS_NOT_FOUND:
-                throw new NotFoundException();
+                throw (new NotFoundException())->setResponse($this);
 
             case self::STATUS_INTERNAL_ERROR:
                 throw new InternalErrorException();
@@ -253,6 +253,7 @@ class Response
 
             switch ($content_type) {
                 case Request::CONTENT_TYPE_XML:
+                case Request::CONTENT_TYPE_APPLICATION_XML:
                     $this->parseXML();
                     break;
 
@@ -318,7 +319,11 @@ class Response
         foreach ($sxml as $child_index => $root_child) {
             switch ($child_index) {
                 case 'PageInfo':
+                case 'pagination':
                     // TODO: We can potentially handle the page info and make it a value on the response object
+                    break;
+                case 'pagination':
+                    // introduced in https://github.com/XeroAPI/xero-node/releases/tag/9.0.0 but not supported here yet
                     break;
                 case 'ErrorNumber':
                     $this->root_error['code'] = (string)$root_child;
@@ -365,8 +370,12 @@ class Response
         foreach ($json as $child_index => $root_child) {
             switch ($child_index) {
                 case 'PageInfo':
+                case 'pagination':
                     // TODO: We can potentially handle the page info and make it a value on the response object
                     break;
+                case 'pagination':
+                    // introduced in https://github.com/XeroAPI/xero-node/releases/tag/9.0.0 but not supported here yet
+                    break;                
                 case 'ErrorNumber':
                     $this->root_error['code'] = $root_child;
 

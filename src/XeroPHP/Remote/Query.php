@@ -24,6 +24,8 @@ class Query
 
     private $page;
 
+    private $pageSize;
+
     private $fromDate;
 
     private $toDate;
@@ -48,6 +50,7 @@ class Query
         $this->order = null;
         $this->modifiedAfter = null;
         $this->page = null;
+        $this->pageSize = null;
         $this->offset = null;
         $this->includeArchived = false;
         $this->createdByMyApp = false;
@@ -130,7 +133,13 @@ class Query
             } elseif (preg_match('/^DateTime\(.+\)$/', $args[1])) {
                 $this->where[] = sprintf('%s==%s', $args[0], $args[1]);
             } else {
-                $this->where[] = sprintf('%s=="%s"', $args[0], $args[1]);
+                // Until fixes from Guzzle, a preliminary escape of + into %2B is needed
+                // to avoid '+' symbol being used as a RFC3986 sub-delims instead of part of
+                // the searched string.
+                // @ref https://github.com/calcinai/xero-php/issues/931
+                // @ref https://github.com/guzzle/psr7/issues/618
+                $strValue = str_replace('+', '%2B', $args[1]);
+                $this->where[] = sprintf('%s=="%s"', $args[0], $strValue);
             }
         } else {
             $this->where[] = $args[0];
@@ -168,7 +177,7 @@ class Query
      *
      * @return $this
      */
-    public function modifiedAfter(\DateTimeInterface $modifiedAfter = null)
+    public function modifiedAfter(?\DateTimeInterface $modifiedAfter = null)
     {
         if ($modifiedAfter === null) {
             $modifiedAfter = new \DateTime('@0'); // since ever
@@ -232,6 +241,28 @@ class Query
             throw new Exception(sprintf('%s does not support paging.', $from_class));
         }
         $this->page = (int) $page;
+
+        return $this;
+    }
+
+
+    /**
+     * @param int $pageSize
+     *
+     * @throws Exception
+     *
+     * @return $this
+     */
+    public function pageSize($pageSize = 100)
+    {
+        /**
+         * @var ObjectInterface
+         */
+        $from_class = $this->from_class;
+        if (! $from_class::isPageable()) {
+            throw new Exception(sprintf('%s does not support paging.', $from_class));
+        }
+        $this->pageSize = (int) $pageSize;
 
         return $this;
     }
@@ -319,6 +350,10 @@ class Query
 
         if ($this->page !== null) {
             $request->setParameter('page', $this->page);
+        }
+
+        if ($this->pageSize !== null) {
+            $request->setParameter('pageSize', $this->pageSize);
         }
 
         if ($this->offset !== null) {
