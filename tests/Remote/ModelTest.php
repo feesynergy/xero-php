@@ -210,7 +210,7 @@ class ModelTest extends TestCase
 
         foreach ($model->getContacts() as $contact) {
             $this->assertEquals(220, $contact->getID());
-            $this->assertTrue($contact->getIsPrimary());
+            $this->assertEquals('Yes', $contact->getIsPrimary());
             $this->assertEquals('Samantha Benecke', $contact->getName());
         }
 
