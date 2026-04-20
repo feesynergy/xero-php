@@ -6,7 +6,6 @@ use XeroPHP\Exception;
 use XeroPHP\Remote\Exception\RequiredFieldException;
 use XeroPHP\Remote\Request;
 use XeroPHP\Remote\URL;
-use XeroPHP\Webhook;
 
 /**
  * Represents a single event within a webhook.
@@ -32,8 +31,8 @@ class Event
     /**
      * Validates the event payload is correctly formatted.
      *
-     * @param \XeroPHP\Webhook $webhook
-     * @param array $event event details
+     * @param  \XeroPHP\Webhook  $webhook
+     * @param  array  $event  event details
      *
      * @throws \XeroPHP\Exception if the provided payload is malformed
      */

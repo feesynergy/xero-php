@@ -319,6 +319,8 @@ class Response
         foreach ($sxml as $child_index => $root_child) {
             switch ($child_index) {
                 case 'PageInfo':
+                case 'pagination':
+                    // introduced in https://github.com/XeroAPI/xero-node/releases/tag/9.0.0 but not supported here yet
                     break;
                 case 'ErrorNumber':
                     $this->root_error['code'] = (string)$root_child;
@@ -365,6 +367,8 @@ class Response
         foreach ($json as $child_index => $root_child) {
             switch ($child_index) {
                 case 'PageInfo':
+                case 'pagination':
+                    // introduced in https://github.com/XeroAPI/xero-node/releases/tag/9.0.0 but not supported here yet
                     break;
                 case 'ErrorNumber':
                     $this->root_error['code'] = $root_child;

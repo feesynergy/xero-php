@@ -71,6 +71,12 @@ class ModelTest extends TestCase
     {
         $testXML = '<Response>
   <Status>OK</Status> 
+    <pagination>
+        <page>1</page>
+        <pageSize>1000</pageSize>
+        <pageCount>1</pageCount>
+        <itemCount>1</itemCount>
+    </pagination>
   <Clients>
     <Client>
       <ID>255</ID>
