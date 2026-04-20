@@ -32,9 +32,12 @@ class Event
     /**
      * Validates the event payload is correctly formatted.
      *
+     * @param \XeroPHP\Webhook $webhook
+     * @param array $event event details
+     *
      * @throws \XeroPHP\Exception if the provided payload is malformed
      */
-    public function __construct(Webhook $webhook, array $event)
+    public function __construct($webhook, $event)
     {
         $this->webhook = $webhook;
         $fields        = [
@@ -52,7 +55,7 @@ class Event
                 throw new RequiredFieldException(
                     get_class($this),
                     $required,
-                    "The event payload was malformed; missing required field $required"
+                    "The event payload was malformed; missing required field {$required}"
                 );
             }
 
@@ -60,37 +63,42 @@ class Event
         }
     }
 
-    public function getWebhook(): \XeroPHP\Webhook
+    /**
+     * @return \XeroPHP\Webhook
+     */
+    public function getWebhook()
     {
         return $this->webhook;
     }
 
     /**
-     * Direct Xero URL to fetch the resource
+     * @return string direct Xero URL to fetch the resource
      */
-    public function getResourceUrl(): string
+    public function getResourceUrl()
     {
         return $this->resourceUrl;
     }
 
     /**
-     * The GUID of the resource
+     * @return string the GUID of the resource
      */
-    public function getResourceId(): string
+    public function getResourceId()
     {
         return $this->resourceId;
     }
 
     /**
-     * date and time of the event in UTC format
+     * @return string date and time of the event in UTC format
      */
-    public function getEventDateUtc(): string
+    public function getEventDateUtc()
     {
         return $this->eventDateUtc;
     }
 
     /**
      * Returns the event date.
+     *
+     * @return \DateTime
      */
     public function getEventDate(): \DateTime
     {

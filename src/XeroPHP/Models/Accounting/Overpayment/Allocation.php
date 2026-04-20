@@ -88,12 +88,20 @@ class Allocation extends Remote\Model
         return false;
     }
 
-    public function getInvoice(): Invoice
+    /**
+     * @return Invoice
+     */
+    public function getInvoice()
     {
         return $this->_data['Invoice'];
     }
 
-    public function setInvoice(Invoice $value): static
+    /**
+     * @param Invoice $value
+     *
+     * @return Allocation
+     */
+    public function setInvoice(Invoice $value)
     {
         $this->propertyUpdated('Invoice', $value);
         $this->_data['Invoice'] = $value;
@@ -101,12 +109,20 @@ class Allocation extends Remote\Model
         return $this;
     }
 
-    public function getAppliedAmount(): float
+    /**
+     * @return float
+     */
+    public function getAppliedAmount()
     {
         return $this->_data['AppliedAmount'];
     }
 
-    public function setAppliedAmount(float $value): static
+    /**
+     * @param float $value
+     *
+     * @return Allocation
+     */
+    public function setAppliedAmount($value)
     {
         $this->propertyUpdated('AppliedAmount', $value);
         $this->_data['AppliedAmount'] = $value;
@@ -114,12 +130,20 @@ class Allocation extends Remote\Model
         return $this;
     }
 
-    public function getDate(): \DateTimeInterface
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getDate()
     {
         return $this->_data['Date'];
     }
 
-    public function setDate(\DateTimeInterface $value): static
+    /**
+     * @param \DateTimeInterface $value
+     *
+     * @return Allocation
+     */
+    public function setDate(\DateTimeInterface $value)
     {
         $this->propertyUpdated('Date', $value);
         $this->_data['Date'] = $value;

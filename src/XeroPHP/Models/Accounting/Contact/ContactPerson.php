@@ -32,32 +32,40 @@ class ContactPerson extends Remote\Model
 
     /**
      * Get the resource uri of the class (Contacts) etc.
+     *
+     * @return string
      */
-    public static function getResourceURI(): string
+    public static function getResourceURI()
     {
         return 'ContactPerson';
     }
 
     /**
      * Get the root node name.  Just the unqualified classname.
+     *
+     * @return string
      */
-    public static function getRootNodeName(): string
+    public static function getRootNodeName()
     {
         return 'ContactPerson';
     }
 
     /**
      * Get the guid property.
+     *
+     * @return string
      */
-    public static function getGUIDProperty(): string
+    public static function getGUIDProperty()
     {
         return '';
     }
 
     /**
      * Get the stem of the API (core.xro) etc.
+     *
+     * @return string
      */
-    public static function getAPIStem(): string
+    public static function getAPIStem()
     {
         return Remote\URL::API_CORE;
     }
@@ -65,9 +73,10 @@ class ContactPerson extends Remote\Model
     /**
      * Get the supported methods.
      */
-    public static function getSupportedMethods(): array
+    public static function getSupportedMethods()
     {
-        return [];
+        return [
+        ];
     }
 
     /**
@@ -93,12 +102,20 @@ class ContactPerson extends Remote\Model
         return false;
     }
 
-    public function getFirstName(): string
+    /**
+     * @return string
+     */
+    public function getFirstName()
     {
         return $this->_data['FirstName'];
     }
 
-    public function setFirstName(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return ContactPerson
+     */
+    public function setFirstName($value)
     {
         $this->propertyUpdated('FirstName', $value);
         $this->_data['FirstName'] = $value;
@@ -106,11 +123,19 @@ class ContactPerson extends Remote\Model
         return $this;
     }
 
-    public function getLastName(): string
+    /**
+     * @return string
+     */
+    public function getLastName()
     {
         return $this->_data['LastName'];
     }
 
+    /**
+     * @param string $value
+     *
+     * @return ContactPerson
+     */
     public function setLastName($value)
     {
         $this->propertyUpdated('LastName', $value);
@@ -128,7 +153,7 @@ class ContactPerson extends Remote\Model
     }
 
     /**
-     * @param  string  $value
+     * @param string $value
      *
      * @return ContactPerson
      */
@@ -149,7 +174,7 @@ class ContactPerson extends Remote\Model
     }
 
     /**
-     * @param  bool  $value
+     * @param bool $value
      *
      * @return ContactPerson
      */

@@ -28,24 +28,30 @@ class BankAccount extends Remote\Model
 
     /**
      * Get the root node name.  Just the unqualified classname.
+     *
+     * @return string
      */
-    public static function getRootNodeName(): string
+    public static function getRootNodeName()
     {
         return 'BankAccount';
     }
 
     /**
      * Get the guid property.
+     *
+     * @return string
      */
-    public static function getGUIDProperty(): string
+    public static function getGUIDProperty()
     {
         return '';
     }
 
     /**
      * Get the stem of the API (core.xro) etc.
+     *
+     * @return string
      */
-    public static function getAPIStem(): string
+    public static function getAPIStem()
     {
         return Remote\URL::API_CORE;
     }
@@ -79,12 +85,20 @@ class BankAccount extends Remote\Model
         return false;
     }
 
-    public function getCode(): string
+    /**
+     * @return string
+     */
+    public function getCode()
     {
         return $this->_data['Code'];
     }
 
-    public function setCode(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return BankAccount
+     */
+    public function setCode($value)
     {
         $this->propertyUpdated('Code', $value);
         $this->_data['Code'] = $value;
@@ -92,12 +106,20 @@ class BankAccount extends Remote\Model
         return $this;
     }
 
-    public function getAccountID(): string
+    /**
+     * @return string
+     */
+    public function getAccountID()
     {
         return $this->_data['AccountID'];
     }
 
-    public function setAccountID(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return BankAccount
+     */
+    public function setAccountID($value)
     {
         $this->propertyUpdated('AccountID', $value);
         $this->_data['AccountID'] = $value;

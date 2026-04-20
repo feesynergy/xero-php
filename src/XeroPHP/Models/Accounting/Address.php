@@ -157,7 +157,12 @@ class Address extends Remote\Model
         return $this->_data['AddressType'];
     }
 
-    public function setAddressType(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Address
+     */
+    public function setAddressType($value)
     {
         $this->propertyUpdated('AddressType', $value);
         $this->_data['AddressType'] = $value;
@@ -165,12 +170,20 @@ class Address extends Remote\Model
         return $this;
     }
 
-    public function getAddressLine1(): string
+    /**
+     * @return string
+     */
+    public function getAddressLine1()
     {
         return $this->_data['AddressLine1'];
     }
 
-    public function setAddressLine1(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Address
+     */
+    public function setAddressLine1($value)
     {
         $this->propertyUpdated('AddressLine1', $value);
         $this->_data['AddressLine1'] = $value;
@@ -178,12 +191,20 @@ class Address extends Remote\Model
         return $this;
     }
 
-    protected function getAddressLine2(): string
+    /**
+     * @return string
+     */
+    public function getAddressLine2()
     {
         return $this->_data['AddressLine2'];
     }
 
-    public function setAddressLine2(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Address
+     */
+    public function setAddressLine2($value)
     {
         $this->propertyUpdated('AddressLine2', $value);
         $this->_data['AddressLine2'] = $value;
@@ -191,12 +212,20 @@ class Address extends Remote\Model
         return $this;
     }
 
-    public function getAddressLine3(): string
+    /**
+     * @return string
+     */
+    public function getAddressLine3()
     {
         return $this->_data['AddressLine3'];
     }
 
-    public function setAddressLine3(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Address
+     */
+    public function setAddressLine3($value)
     {
         $this->propertyUpdated('AddressLine3', $value);
         $this->_data['AddressLine3'] = $value;
@@ -204,12 +233,20 @@ class Address extends Remote\Model
         return $this;
     }
 
-    public function getAddressLine4(): string
+    /**
+     * @return string
+     */
+    public function getAddressLine4()
     {
         return $this->_data['AddressLine4'];
     }
 
-    public function setAddressLine4(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Address
+     */
+    public function setAddressLine4($value)
     {
         $this->propertyUpdated('AddressLine4', $value);
         $this->_data['AddressLine4'] = $value;
@@ -217,12 +254,20 @@ class Address extends Remote\Model
         return $this;
     }
 
-    public function getCity(): string
+    /**
+     * @return string
+     */
+    public function getCity()
     {
         return $this->_data['City'];
     }
 
-    public function setCity(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Address
+     */
+    public function setCity($value)
     {
         $this->propertyUpdated('City', $value);
         $this->_data['City'] = $value;
@@ -230,12 +275,20 @@ class Address extends Remote\Model
         return $this;
     }
 
-    public function getRegion(): string
+    /**
+     * @return string
+     */
+    public function getRegion()
     {
         return $this->_data['Region'];
     }
 
-    public function setRegion(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Address
+     */
+    public function setRegion($value)
     {
         $this->propertyUpdated('Region', $value);
         $this->_data['Region'] = $value;
@@ -243,12 +296,20 @@ class Address extends Remote\Model
         return $this;
     }
 
-    public function getPostalCode(): string
+    /**
+     * @return string
+     */
+    public function getPostalCode()
     {
         return $this->_data['PostalCode'];
     }
 
-    public function setPostalCode(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Address
+     */
+    public function setPostalCode($value)
     {
         $this->propertyUpdated('PostalCode', $value);
         $this->_data['PostalCode'] = $value;
@@ -256,12 +317,20 @@ class Address extends Remote\Model
         return $this;
     }
 
-    public function getCountry(): string
+    /**
+     * @return string
+     */
+    public function getCountry()
     {
         return $this->_data['Country'];
     }
 
-    public function setCountry(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Address
+     */
+    public function setCountry($value)
     {
         $this->propertyUpdated('Country', $value);
         $this->_data['Country'] = $value;
@@ -269,12 +338,20 @@ class Address extends Remote\Model
         return $this;
     }
 
-    public function getAttentionTo(): string
+    /**
+     * @return string
+     */
+    public function getAttentionTo()
     {
         return $this->_data['AttentionTo'];
     }
 
-    public function setAttentionTo(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Address
+     */
+    public function setAttentionTo($value)
     {
         $this->propertyUpdated('AttentionTo', $value);
         $this->_data['AttentionTo'] = $value;

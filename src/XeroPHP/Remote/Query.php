@@ -4,17 +4,6 @@ namespace XeroPHP\Remote;
 
 use DateTime;
 use XeroPHP\Application;
-use XeroPHP\Exception;
-use XeroPHP\Remote\Exception\BadRequestException;
-use XeroPHP\Remote\Exception\ForbiddenException;
-use XeroPHP\Remote\Exception\InternalErrorException;
-use XeroPHP\Remote\Exception\NotAvailableException;
-use XeroPHP\Remote\Exception\NotFoundException;
-use XeroPHP\Remote\Exception\NotImplementedException;
-use XeroPHP\Remote\Exception\OrganisationOfflineException;
-use XeroPHP\Remote\Exception\RateLimitExceededException;
-use XeroPHP\Remote\Exception\ReportPermissionMissingException;
-use XeroPHP\Remote\Exception\UnauthorizedException;
 
 class Query
 {
@@ -51,26 +40,26 @@ class Query
 
     private $params;
 
-    /** @var Response|null $response */
+    /** @var Response|null $response  */
     private $response;
 
     public function __construct(Application $app)
     {
-        $this->app             = $app;
-        $this->where           = [];
-        $this->order           = null;
-        $this->modifiedAfter   = null;
-        $this->page            = null;
-        $this->pageSize        = null;
-        $this->offset          = null;
+        $this->app = $app;
+        $this->where = [];
+        $this->order = null;
+        $this->modifiedAfter = null;
+        $this->page = null;
+        $this->pageSize = null;
+        $this->offset = null;
         $this->includeArchived = false;
-        $this->createdByMyApp  = false;
-        $this->params          = [];
-        $this->response        = null;
+        $this->createdByMyApp = false;
+        $this->params = [];
+        $this->response = null;
     }
 
     /**
-     * @param  string  $class
+     * @param string $class
      *
      * @return $this
      */
@@ -115,8 +104,8 @@ class Query
     }
 
     /**
-     * @param  string  $operator
-     * @param  array  $args
+     * @param string $operator
+     * @param array $args
      *
      * @return $this
      */
@@ -171,8 +160,8 @@ class Query
     }
 
     /**
-     * @param  string  $order
-     * @param  string  $direction
+     * @param string $order
+     * @param string $direction
      *
      * @return $this
      */
@@ -184,7 +173,7 @@ class Query
     }
 
     /**
-     * @param  \DateTimeInterface|null  $modifiedAfter
+     * @param \DateTimeInterface|null $modifiedAfter
      *
      * @return $this
      */
@@ -200,7 +189,7 @@ class Query
     }
 
     /**
-     * @param  DateTime  $fromDate
+     * @param DateTime $fromDate
      *
      * @return $this
      */
@@ -212,7 +201,7 @@ class Query
     }
 
     /**
-     * @param  DateTime  $toDate
+     * @param DateTime $toDate
      *
      * @return $this
      */
@@ -224,7 +213,7 @@ class Query
     }
 
     /**
-     * @param  DateTime  $date
+     * @param DateTime $date
      *
      * @return $this
      */
@@ -236,11 +225,11 @@ class Query
     }
 
     /**
-     * @param  int  $page
+     * @param int $page
      *
-     * @return $this
      * @throws Exception
      *
+     * @return $this
      */
     public function page($page = 1)
     {
@@ -248,21 +237,21 @@ class Query
          * @var ObjectInterface
          */
         $from_class = $this->from_class;
-        if (!$from_class::isPageable()) {
+        if (! $from_class::isPageable()) {
             throw new Exception(sprintf('%s does not support paging.', $from_class));
         }
-        $this->page = (int)$page;
+        $this->page = (int) $page;
 
         return $this;
     }
 
 
     /**
-     * @param  int  $pageSize
+     * @param int $pageSize
      *
-     * @return $this
      * @throws Exception
      *
+     * @return $this
      */
     public function pageSize($pageSize = 100)
     {
@@ -270,71 +259,61 @@ class Query
          * @var ObjectInterface
          */
         $from_class = $this->from_class;
-        if (!$from_class::isPageable()) {
+        if (! $from_class::isPageable()) {
             throw new Exception(sprintf('%s does not support paging.', $from_class));
         }
-        $this->pageSize = (int)$pageSize;
+        $this->pageSize = (int) $pageSize;
 
         return $this;
     }
 
     /**
-     * @param  int  $offset
+     * @param int $offset
      *
      * @return $this
      */
     public function offset($offset = 0)
     {
-        $this->offset = (int)$offset;
+        $this->offset = (int) $offset;
 
         return $this;
     }
 
     public function includeArchived($includeArchived = true)
     {
-        $this->includeArchived = (bool)$includeArchived;
+        $this->includeArchived = (bool) $includeArchived;
 
         return $this;
     }
 
     public function createdByMyApp($createdByMyApp = true)
     {
-        $this->createdByMyApp = (bool)$createdByMyApp;
+        $this->createdByMyApp = (bool) $createdByMyApp;
 
         return $this;
     }
 
     public function setParameter($key, $value)
     {
-        $this->params[(string)$key] = (string)$value;
+        $this->params[(string) $key] = (string) $value;
 
         return $this;
     }
 
     /**
-     * @throws Exception
-     * @throws BadRequestException
-     * @throws ForbiddenException
-     * @throws InternalErrorException
-     * @throws NotAvailableException
-     * @throws NotFoundException
-     * @throws NotImplementedException
-     * @throws OrganisationOfflineException
-     * @throws RateLimitExceededException
-     * @throws ReportPermissionMissingException
-     * @throws UnauthorizedException
+     * @return Collection
      */
-    public function execute(): Collection
+    public function execute()
     {
-        /** @var ObjectInterface $from_class */
+        /**
+         * @var ObjectInterface
+         */
         $from_class = $this->from_class;
-
         $url = new URL(
             $this->app,
             $from_class::getResourceURI(),
             $from_class::getAPIStem()
         );
-
         $request = new Request($this->app, $url, Request::METHOD_GET);
 
         // Add params
@@ -345,7 +324,7 @@ class Query
         // Concatenate where statements
         $where = $this->getWhere();
 
-        if (!empty($where)) {
+        if (! empty($where)) {
             $request->setParameter('where', $where);
         }
 
@@ -421,5 +400,13 @@ class Query
     public function getFrom()
     {
         return $this->from_class;
+    }
+
+    /**
+     * @return Response|null
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 }

@@ -86,12 +86,20 @@ class FromBankAccount extends Remote\Model
         return false;
     }
 
-    public function getCode(): string
+    /**
+     * @return string
+     */
+    public function getCode()
     {
         return $this->_data['Code'];
     }
 
-    public function setCode(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return FromBankAccount
+     */
+    public function setCode($value)
     {
         $this->propertyUpdated('Code', $value);
         $this->_data['Code'] = $value;
@@ -99,12 +107,20 @@ class FromBankAccount extends Remote\Model
         return $this;
     }
 
-    public function getAccountID(): string
+    /**
+     * @return string
+     */
+    public function getAccountID()
     {
         return $this->_data['AccountID'];
     }
 
-    public function setAccountID(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return FromBankAccount
+     */
+    public function setAccountID($value)
     {
         $this->propertyUpdated('AccountID', $value);
         $this->_data['AccountID'] = $value;
@@ -112,7 +128,10 @@ class FromBankAccount extends Remote\Model
         return $this;
     }
 
-    public function getName(): string
+    /**
+     * @return string
+     */
+    public function getName()
     {
         return $this->_data['Name'];
     }

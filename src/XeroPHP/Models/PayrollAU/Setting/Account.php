@@ -120,12 +120,20 @@ class Account extends Remote\Model
         return $this;
     }
 
-    public function getType(): string
+    /**
+     * @return string
+     */
+    public function getType()
     {
         return $this->_data['Type'];
     }
 
-    public function setType(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Account
+     */
+    public function setType($value)
     {
         $this->propertyUpdated('Type', $value);
         $this->_data['Type'] = $value;
@@ -133,12 +141,20 @@ class Account extends Remote\Model
         return $this;
     }
 
-    public function getCode(): string
+    /**
+     * @return string
+     */
+    public function getCode()
     {
         return $this->_data['Code'];
     }
 
-    public function setCode(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Account
+     */
+    public function setCode($value)
     {
         $this->propertyUpdated('Code', $value);
         $this->_data['Code'] = $value;
@@ -146,12 +162,20 @@ class Account extends Remote\Model
         return $this;
     }
 
-    public function getName(): string
+    /**
+     * @return string
+     */
+    public function getName()
     {
         return $this->_data['Name'];
     }
 
-    public function setName(string $value): static
+    /**
+     * @param string $value
+     *
+     * @return Account
+     */
+    public function setName($value)
     {
         $this->propertyUpdated('Name', $value);
         $this->_data['Name'] = $value;

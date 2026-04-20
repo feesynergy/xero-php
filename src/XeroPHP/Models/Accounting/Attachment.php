@@ -35,8 +35,10 @@ class Attachment extends Model
 
     /**
      * Actual file content (binary).
+     *
+     * @var string
      */
-    private string $content;
+    private $content;
 
     private $local_handle;
 
