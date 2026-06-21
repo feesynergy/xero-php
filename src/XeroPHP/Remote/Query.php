@@ -40,26 +40,26 @@ class Query
 
     private $params;
 
-    /** @var Response|null $response  */
+    /** @var Response|null $response */
     private $response;
 
     public function __construct(Application $app)
     {
-        $this->app = $app;
-        $this->where = [];
-        $this->order = null;
-        $this->modifiedAfter = null;
-        $this->page = null;
-        $this->pageSize = null;
-        $this->offset = null;
+        $this->app             = $app;
+        $this->where           = [];
+        $this->order           = null;
+        $this->modifiedAfter   = null;
+        $this->page            = null;
+        $this->pageSize        = null;
+        $this->offset          = null;
         $this->includeArchived = false;
-        $this->createdByMyApp = false;
-        $this->params = [];
-        $this->response = null;
+        $this->createdByMyApp  = false;
+        $this->params          = [];
+        $this->response        = null;
     }
 
     /**
-     * @param string $class
+     * @param  string  $class
      *
      * @return $this
      */
@@ -104,8 +104,8 @@ class Query
     }
 
     /**
-     * @param string $operator
-     * @param array $args
+     * @param  string  $operator
+     * @param  array  $args
      *
      * @return $this
      */
@@ -138,7 +138,7 @@ class Query
                 // the searched string.
                 // @ref https://github.com/calcinai/xero-php/issues/931
                 // @ref https://github.com/guzzle/psr7/issues/618
-                $strValue = str_replace('+', '%2B', $args[1]);
+                $strValue      = str_replace('+', '%2B', $args[1]);
                 $this->where[] = sprintf('%s=="%s"', $args[0], $strValue);
             }
         } else {
@@ -160,8 +160,8 @@ class Query
     }
 
     /**
-     * @param string $order
-     * @param string $direction
+     * @param  string  $order
+     * @param  string  $direction
      *
      * @return $this
      */
@@ -173,7 +173,7 @@ class Query
     }
 
     /**
-     * @param \DateTimeInterface|null $modifiedAfter
+     * @param  \DateTimeInterface|null  $modifiedAfter
      *
      * @return $this
      */
@@ -189,7 +189,7 @@ class Query
     }
 
     /**
-     * @param DateTime $fromDate
+     * @param  DateTime  $fromDate
      *
      * @return $this
      */
@@ -201,7 +201,7 @@ class Query
     }
 
     /**
-     * @param DateTime $toDate
+     * @param  DateTime  $toDate
      *
      * @return $this
      */
@@ -213,7 +213,7 @@ class Query
     }
 
     /**
-     * @param DateTime $date
+     * @param  DateTime  $date
      *
      * @return $this
      */
@@ -225,11 +225,11 @@ class Query
     }
 
     /**
-     * @param int $page
-     *
-     * @throws Exception
+     * @param  int  $page
      *
      * @return $this
+     * @throws Exception
+     *
      */
     public function page($page = 1)
     {
@@ -237,21 +237,21 @@ class Query
          * @var ObjectInterface
          */
         $from_class = $this->from_class;
-        if (! $from_class::isPageable()) {
+        if (!$from_class::isPageable()) {
             throw new Exception(sprintf('%s does not support paging.', $from_class));
         }
-        $this->page = (int) $page;
+        $this->page = (int)$page;
 
         return $this;
     }
 
 
     /**
-     * @param int $pageSize
-     *
-     * @throws Exception
+     * @param  int  $pageSize
      *
      * @return $this
+     * @throws Exception
+     *
      */
     public function pageSize($pageSize = 100)
     {
@@ -259,43 +259,43 @@ class Query
          * @var ObjectInterface
          */
         $from_class = $this->from_class;
-        if (! $from_class::isPageable()) {
+        if (!$from_class::isPageable()) {
             throw new Exception(sprintf('%s does not support paging.', $from_class));
         }
-        $this->pageSize = (int) $pageSize;
+        $this->pageSize = (int)$pageSize;
 
         return $this;
     }
 
     /**
-     * @param int $offset
+     * @param  int  $offset
      *
      * @return $this
      */
     public function offset($offset = 0)
     {
-        $this->offset = (int) $offset;
+        $this->offset = (int)$offset;
 
         return $this;
     }
 
     public function includeArchived($includeArchived = true)
     {
-        $this->includeArchived = (bool) $includeArchived;
+        $this->includeArchived = (bool)$includeArchived;
 
         return $this;
     }
 
     public function createdByMyApp($createdByMyApp = true)
     {
-        $this->createdByMyApp = (bool) $createdByMyApp;
+        $this->createdByMyApp = (bool)$createdByMyApp;
 
         return $this;
     }
 
     public function setParameter($key, $value)
     {
-        $this->params[(string) $key] = (string) $value;
+        $this->params[(string)$key] = (string)$value;
 
         return $this;
     }
@@ -309,12 +309,12 @@ class Query
          * @var ObjectInterface
          */
         $from_class = $this->from_class;
-        $url = new URL(
+        $url        = new URL(
             $this->app,
             $from_class::getResourceURI(),
             $from_class::getAPIStem()
         );
-        $request = new Request($this->app, $url, Request::METHOD_GET);
+        $request    = new Request($this->app, $url, Request::METHOD_GET);
 
         // Add params
         foreach ($this->params as $key => $value) {
@@ -324,7 +324,7 @@ class Query
         // Concatenate where statements
         $where = $this->getWhere();
 
-        if (! empty($where)) {
+        if (!empty($where)) {
             $request->setParameter('where', $where);
         }
 
@@ -349,15 +349,15 @@ class Query
         }
 
         if ($this->page !== null) {
-            $request->setParameter('page', $this->page);
+            $request->setParameter('page', (string)$this->page);
         }
 
         if ($this->pageSize !== null) {
-            $request->setParameter('pageSize', $this->pageSize);
+            $request->setParameter('pageSize', (string)$this->pageSize);
         }
 
         if ($this->offset !== null) {
-            $request->setParameter('offset', $this->offset);
+            $request->setParameter('offset', (string)$this->offset);
         }
 
         if ($this->includeArchived !== false) {
@@ -370,7 +370,7 @@ class Query
 
         $request->send();
 
-        $elements = new Collection();
+        $elements       = new Collection();
         $this->response = $request->getResponse();
         foreach ($this->response->getElements() as $element) {
             /**
