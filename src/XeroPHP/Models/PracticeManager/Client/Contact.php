@@ -8,6 +8,7 @@ use XeroPHP\Traits\PracticeManager\CustomFieldValueTrait;
 class Contact extends Remote\Model
 {
     use CustomFieldValueTrait;
+
     /*
      * // To Save a new Contact you need to add a ClientID
      * <Contact>
@@ -105,6 +106,7 @@ class Contact extends Remote\Model
     {
         return [
             'ID'         => [false, self::PROPERTY_TYPE_INT, null, false, false],
+            'UUID'       => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'IsPrimary'  => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
             'Name'       => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Salutation' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
@@ -130,7 +132,7 @@ class Contact extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Contact
      */
@@ -142,13 +144,21 @@ class Contact extends Remote\Model
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getUUID()
+    {
+        return $this->_data['UUID'];
+    }
+
     public function getIsPrimary()
     {
         return $this->_data['IsPrimary'];
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Contact
      */
@@ -169,7 +179,7 @@ class Contact extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Contact
      */
@@ -190,7 +200,7 @@ class Contact extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Contact
      */
@@ -211,7 +221,7 @@ class Contact extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Contact
      */
@@ -232,7 +242,7 @@ class Contact extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Contact
      */
@@ -253,7 +263,7 @@ class Contact extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Contact
      */
@@ -274,7 +284,7 @@ class Contact extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Contact
      */
@@ -295,7 +305,7 @@ class Contact extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Contact
      */

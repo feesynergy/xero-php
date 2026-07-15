@@ -164,6 +164,7 @@ class Client extends Remote\Model
     {
         return [
             'ID'                       => [false, self::PROPERTY_TYPE_INT, null, false, false],
+            'UUID'                     => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Name'                     => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Title'                    => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'FirstName'                => [false, self::PROPERTY_TYPE_STRING, null, false, false],
@@ -245,6 +246,14 @@ class Client extends Remote\Model
         $this->_data['ID'] = $value;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUUID()
+    {
+        return $this->_data['UUID'];
     }
 
     /**

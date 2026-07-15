@@ -98,7 +98,7 @@ class Note extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Note
      */
@@ -119,7 +119,7 @@ class Note extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Note
      */
@@ -140,7 +140,7 @@ class Note extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Note
      */
@@ -161,7 +161,7 @@ class Note extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param  \DateTimeInterface  $value
      *
      * @return Note
      */
@@ -182,7 +182,7 @@ class Note extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Note
      */

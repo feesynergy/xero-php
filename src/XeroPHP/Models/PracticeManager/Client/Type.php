@@ -97,7 +97,7 @@ class Type extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Type
      */

@@ -123,6 +123,7 @@ class CustomFieldValue extends Remote\Model
     {
         return [
             'ID'      => [true, self::PROPERTY_TYPE_INT, null, false, false],
+            'UUID'    => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Name'    => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'Date'    => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
             'Number'  => [false, self::PROPERTY_TYPE_INT, null, false, false],
@@ -146,7 +147,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param int $value
+     * @param  int  $value
      *
      * @return self
      */
@@ -161,13 +162,21 @@ class CustomFieldValue extends Remote\Model
     /**
      * @return string
      */
+    public function getUUID()
+    {
+        return $this->_data['UUID'];
+    }
+
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->_data['Name'];
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -188,7 +197,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param  \DateTimeInterface  $value
      *
      * @return self
      */
@@ -209,7 +218,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param int $value
+     * @param  int  $value
      *
      * @return self
      */
@@ -230,7 +239,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -251,7 +260,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return self
      */
@@ -272,7 +281,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */

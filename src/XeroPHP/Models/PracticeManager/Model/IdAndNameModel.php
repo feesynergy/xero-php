@@ -63,8 +63,9 @@ abstract class IdAndNameModel extends Remote\Model
     public static function getProperties()
     {
         return [
-            'ID'         => [false, self::PROPERTY_TYPE_INT, null, false, false],
-            'Name'       => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'ID'   => [false, self::PROPERTY_TYPE_INT, null, false, false],
+            'UUID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'Name' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
         ];
     }
 
@@ -82,7 +83,7 @@ abstract class IdAndNameModel extends Remote\Model
     }
 
     /**
-     * @param int $value
+     * @param  int  $value
      *
      * @return self
      */
@@ -97,13 +98,21 @@ abstract class IdAndNameModel extends Remote\Model
     /**
      * @return string
      */
+    public function getUUID()
+    {
+        return $this->_data['UUID'];
+    }
+
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->_data['Name'];
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
