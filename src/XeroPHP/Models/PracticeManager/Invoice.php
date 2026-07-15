@@ -174,6 +174,7 @@ class Invoice extends Remote\Model
     {
         return [
             'InternalID'         => [false, self::PROPERTY_TYPE_INT, null, false, false],
+            'UUID'               => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'ID'                 => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Type'               => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'Status'             => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
@@ -208,7 +209,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param int $value
+     * @param  int  $value
      *
      * @return self
      */
@@ -229,7 +230,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -244,13 +245,21 @@ class Invoice extends Remote\Model
     /**
      * @return string
      */
+    public function getUUID()
+    {
+        return $this->_data['UUID'];
+    }
+
+    /**
+     * @return string
+     */
     public function getType()
     {
         return $this->_data['Type'];
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -271,7 +280,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -292,7 +301,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -313,7 +322,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -334,7 +343,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param  \DateTimeInterface  $value
      *
      * @return self
      */
@@ -355,7 +364,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param  \DateTimeInterface  $value
      *
      * @return self
      */
@@ -376,7 +385,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -397,7 +406,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -418,7 +427,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -439,7 +448,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -460,7 +469,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -481,7 +490,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -502,7 +511,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -523,7 +532,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param Job $value
+     * @param  Job  $value
      *
      * @return self
      */
@@ -547,7 +556,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param Task $value
+     * @param  Task  $value
      *
      * @return self
      */
@@ -571,7 +580,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param Cost $value
+     * @param  Cost  $value
      *
      * @return self
      */

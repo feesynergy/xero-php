@@ -100,7 +100,7 @@ class Job extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -121,7 +121,7 @@ class Job extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -142,7 +142,7 @@ class Job extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -163,7 +163,7 @@ class Job extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -184,14 +184,14 @@ class Job extends Remote\Model
     }
 
     /**
-     * @param Task $value
+     * @param  Task  $value
      *
      * @return self
      */
     public function addTask(Task $value)
     {
         $this->propertyUpdated('Tasks', $value);
-        if (! isset($this->_data['Tasks'])) {
+        if (!isset($this->_data['Tasks'])) {
             $this->_data['Tasks'] = new Remote\Collection();
         }
         $this->_data['Tasks'][] = $value;
@@ -208,14 +208,14 @@ class Job extends Remote\Model
     }
 
     /**
-     * @param Cost $value
+     * @param  Cost  $value
      *
      * @return self
      */
     public function addCost(Cost $value)
     {
         $this->propertyUpdated('Costs', $value);
-        if (! isset($this->_data['Costs'])) {
+        if (!isset($this->_data['Costs'])) {
             $this->_data['Costs'] = new Remote\Collection();
         }
         $this->_data['Costs'][] = $value;

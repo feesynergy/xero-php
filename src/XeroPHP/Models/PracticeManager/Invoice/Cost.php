@@ -108,7 +108,7 @@ class Cost extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -129,7 +129,7 @@ class Cost extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -150,7 +150,7 @@ class Cost extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -171,7 +171,7 @@ class Cost extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -192,7 +192,7 @@ class Cost extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -213,7 +213,7 @@ class Cost extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -234,7 +234,7 @@ class Cost extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -255,7 +255,7 @@ class Cost extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -276,7 +276,7 @@ class Cost extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -297,7 +297,7 @@ class Cost extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */

@@ -2,14 +2,6 @@
 
 namespace XeroPHP\Models\PracticeManager;
 
-use XeroPHP\Models\PracticeManager\Client\AccountManager;
-use XeroPHP\Models\PracticeManager\Client\BillingClient;
-use XeroPHP\Models\PracticeManager\Client\Contact;
-use XeroPHP\Models\PracticeManager\Client\Group;
-use XeroPHP\Models\PracticeManager\Client\JobManager;
-use XeroPHP\Models\PracticeManager\Client\Note;
-use XeroPHP\Models\PracticeManager\Client\Relationship;
-use XeroPHP\Models\PracticeManager\Client\Type;
 use XeroPHP\Remote;
 
 class CustomField extends Remote\Model
@@ -165,6 +157,7 @@ class CustomField extends Remote\Model
     {
         return [
             'ID'           => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'UUID'         => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Name'         => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'Type'         => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'LinkUrl'      => [false, self::PROPERTY_TYPE_STRING, null, false, false],
@@ -195,7 +188,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param int $value
+     * @param  int  $value
      *
      * @return CustomField
      */
@@ -210,13 +203,21 @@ class CustomField extends Remote\Model
     /**
      * @return string
      */
+    public function getUUID()
+    {
+        return $this->_data['UUID'];
+    }
+
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->_data['Name'];
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CustomField
      */
@@ -237,7 +238,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CustomField
      */
@@ -258,7 +259,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CustomField
      */
@@ -279,7 +280,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CustomField
      */
@@ -300,7 +301,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -321,7 +322,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -342,7 +343,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -363,7 +364,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -384,7 +385,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -405,7 +406,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -426,7 +427,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -447,7 +448,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -468,7 +469,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CustomField
      */

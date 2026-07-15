@@ -81,6 +81,7 @@ class Relationship extends Remote\Model
     {
         return [
             'ID'             => [false, self::PROPERTY_TYPE_INT, null, false, false],
+            'UUID'           => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Type'           => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'RelatedClient'  => [false, self::PROPERTY_TYPE_OBJECT, 'PracticeManager\\Client\\RelatedClient', false, false],
             'NumberOfShares' => [false, self::PROPERTY_TYPE_INT, null, false, false],
@@ -104,7 +105,7 @@ class Relationship extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Relationship
      */
@@ -119,13 +120,21 @@ class Relationship extends Remote\Model
     /**
      * @return string
      */
+    public function getUUID()
+    {
+        return $this->_data['UUID'];
+    }
+
+    /**
+     * @return string
+     */
     public function getType()
     {
         return $this->_data['Type'];
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Relationship
      */
@@ -146,7 +155,7 @@ class Relationship extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Relationship
      */
@@ -167,7 +176,7 @@ class Relationship extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Relationship
      */
@@ -188,7 +197,7 @@ class Relationship extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Relationship
      */
@@ -209,7 +218,7 @@ class Relationship extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Relationship
      */
@@ -230,7 +239,7 @@ class Relationship extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Relationship
      */
