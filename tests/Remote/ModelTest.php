@@ -80,6 +80,7 @@ class ModelTest extends TestCase
   <Clients>
     <Client>
       <ID>255</ID>
+      <UUID>e987f8a9-b0c1-4d2e-9f3a-4b5c6d7e8f9a</UUID>
       <Name>XYZ Australia, NZ Business Unit</Name>
       <Title /> <!-- AU Tax Enabled only-->
       <Gender /> <!-- AU Tax Enabled only-->
@@ -112,6 +113,7 @@ class ModelTest extends TestCase
       <IsDeleted>No</IsDeleted>
       <AccountManager>
         <ID>2</ID>
+        <UUID>c3d4e5f6-a7b8-4c9d-8e0f-1a2b3c4d5e6f</UUID>
         <Name>Jo Blogs</Name> 
       </AccountManager>
       <Type>
@@ -123,6 +125,7 @@ class ModelTest extends TestCase
       <Contacts>
         <Contact>
           <ID>220</ID>
+          <UUID>d220e5f6-a7b8-4c9d-8e0f-1a2b3c4d5e6f</UUID>
           <IsPrimary>Yes</IsPrimary>
           <Name>Samantha Benecke</Name> 
           <Salutation>Sam</Salutation> 
@@ -136,6 +139,7 @@ class ModelTest extends TestCase
       <Groups>
         <Group>
           <ID>783949</ID>
+          <UUID>f987a3b4-c5d6-4e7f-8a8b-9c0d1e2f3a4b</UUID>
           <Name>1 Geotechnical Limited</Name>
         </Group>
       </Groups>
@@ -159,6 +163,7 @@ class ModelTest extends TestCase
       <Contacts /> 
       <BillingClient>
         <ID>12345</ID>
+        <UUID>a2345b4c-d5e6-4f7a-8b8c-9d0e1f2a3b4c</UUID>
         <Name>Billing Client</Name>
       </BillingClient>
     </Client>
@@ -208,17 +213,37 @@ class ModelTest extends TestCase
         $models = $app->load(\XeroPHP\Models\PracticeManager\Client::class)->setParameter('detailed', true)
                       ->setParameter('modifiedsince', date('Y-m-d\TH:i:s'))->execute();
 
+        $this->assertCount(2, $models);
+
         /** @var \XeroPHP\Models\PracticeManager\Client $model */
         $model = $models->first();
 
         $this->assertEquals(255, $model->getID());
+        $this->assertEquals('e987f8a9-b0c1-4d2e-9f3a-4b5c6d7e8f9a', $model->getUUID());
         $this->assertEquals('XYZ Australia, NZ Business Unit', $model->getName());
 
         foreach ($model->getContacts() as $contact) {
             $this->assertEquals(220, $contact->getID());
+            $this->assertEquals('d220e5f6-a7b8-4c9d-8e0f-1a2b3c4d5e6f', $contact->getUUID());
             $this->assertEquals('Yes', $contact->getIsPrimary());
             $this->assertEquals('Samantha Benecke', $contact->getName());
         }
+
+        foreach ($model->getGroups() as $group) {
+            $this->assertEquals(783949, $group->getID());
+            $this->assertEquals('f987a3b4-c5d6-4e7f-8a8b-9c0d1e2f3a4b', $group->getUUID());
+            $this->assertEquals('1 Geotechnical Limited', $group->getName());
+        }
+
+        $this->assertEquals(2, $model->getAccountManager()->getID());
+        $this->assertEquals('c3d4e5f6-a7b8-4c9d-8e0f-1a2b3c4d5e6f', $model->getAccountManager()->getUUID());
+        $this->assertEquals('Jo Blogs', $model->getAccountManager()->getName());
+
+        $model = $models->last();
+
+        $this->assertEquals('12345', $model->getBillingClient()->getID());
+        $this->assertEquals('a2345b4c-d5e6-4f7a-8b8c-9d0e1f2a3b4c', $model->getBillingClient()->getUUID());
+        $this->assertEquals('Billing Client', $model->getBillingClient()->getName());
 
         $customFieldValues = $model->getCustomFieldValues();
 
